@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Posts</title>
+</head>
+<body>
+    <h1>Your Posts</h1>
+    <a href="{% url 'create_post' %}">Create New Post</a>
+    <ul>
+      {% for post in posts %}
+        <li>
+          <strong>{{ post.title }}</strong>
+          <a href="{% url 'edit_post' post.id %}">Edit</a>
+          <a href="{% url 'delete_post' post.id %}">Delete</a>
+          <p>{{ post.content|truncatewords:20 }}</p>
+        </li>
+      {% empty %}
+        <li>No posts yet.</li>
+      {% endfor %}
+    </ul>
+</body>
+</html>
